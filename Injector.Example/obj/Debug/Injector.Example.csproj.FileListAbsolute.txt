@@ -1,0 +1,5 @@
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\Injector\Injector.Example\bin\Debug\Injector.Example.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\Injector\Injector.Example\bin\Debug\Injector.Example.pdb
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\Injector\Injector.Example\obj\Debug\Injector.Example.dll
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\Injector\Injector.Example\obj\Debug\Injector.Example.pdb
+C:\Users\Matt\Documents\Visual Studio 2015\Projects\Injector\Injector.Example\obj\Debug\Injector.Example.csprojResolveAssemblyReference.cache
