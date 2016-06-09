@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Injector.TypeExplorer
 {
-    public class TypeLoader
+    public class TypeLoader : ITypeLoader
     {
         private const string DLLExtension = ".dll";
         private const string EXEExtension = ".exe";
-        public void Load()
+
+        public void LoadAssemblies()
         {
             foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory))
                 {

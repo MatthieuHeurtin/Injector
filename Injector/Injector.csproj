@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ElementGetter\TypeGetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeExplorer\ITypeLoader.cs" />
     <Compile Include="TypeExplorer\LoadedType.cs" />
     <Compile Include="TypeExplorer\TypeLoader.cs" />
   </ItemGroup>

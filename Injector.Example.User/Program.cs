@@ -7,8 +7,10 @@ namespace Injector.Example.User
     {
         static void Main(string[] args)
         {
-            new TypeLoader().Load();
-            ITypeExample myType = new TypeGetter<ITypeExample>().GetInstanceNamed("TypeExample") as ITypeExample;
+            ITypeLoader typeLoader = new TypeLoader();
+            typeLoader.LoadAssemblies();
+
+            ITypeExample myType = new InstanceGetter().GetInstance<ITypeExample>() as ITypeExample;
             myType.MethodExample();
 
         }

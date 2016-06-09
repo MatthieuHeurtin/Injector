@@ -1,56 +1,71 @@
 ﻿using Injector.TypeExplorer;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Injector.ElementGetter
 {
-    public class TypeGetter<T>
+    public class InstanceGetter
     {
-        public object GetInstanceForType()
+        public object GetInstance<T>()
         {
-            foreach (Type t in LoadedType.types)
+            foreach (Type t in LoadedType._types)
             {
+              
                 if (t.GetInterfaces().Contains(typeof(T)))
                 {
-                    return Activator.CreateInstance(t);
-                }
-            }
-            return null;
-        }
+                    List<object> parameterInstances = new List<object>();
+                    IEnumerable<ParameterInfo> parameterInfos = GetConstructorParameters(t);
 
-        public object GetInstanceNamed(string typeName)
-        {
-            foreach (Type t in LoadedType.types)
-            {
-                if (t.GetInterfaces().Contains(typeof(T)) && Equals(t.Name, typeName))
-                {
-                    foreach (ConstructorInfo constructorInfo in t.GetConstructors())
+                    foreach (ParameterInfo parameterInfo in parameterInfos)
                     {
-                        if (AreAllParametersInterfaces(constructorInfo))
-                        {
-                            object[] parameters = new object[constructorInfo.GetParameters().Count()];
-                            for (int i =0; i < constructorInfo.GetParameters().Count(); i++)
-                            {
-                                parameters[i] = GetInstanceForThisType(constructorInfo.GetParameters()[i].ParameterType);
-                            }
-                            return Activator.CreateInstance(t, parameters);
-                        }
-                        return null;
+                        parameterInstances.Add(GetInstanceForThisInterface(parameterInfo.ParameterType));
                     }
-                    return null;
+                    return Activator.CreateInstance(t, parameterInstances.ToArray());
                 }
             }
             return null;
         }
 
-        private object GetInstanceForThisType(Type type)
+        private static IEnumerable<ParameterInfo> GetConstructorParameters(Type t)
         {
-            foreach (Type t in LoadedType.types)
+            List<ParameterInfo> parameterInfos = new List<ParameterInfo>();
+            foreach (ConstructorInfo constructorInfo in t.GetConstructors())
+            {
+                if (AreAllParametersInterfaces(constructorInfo))
+                {
+                    foreach (ParameterInfo parameterInfo in constructorInfo.GetParameters())
+                    {
+                        parameterInfos.Add(parameterInfo);
+                    }
+                    //take the first constuctor whose all parameters are Interface
+                    return parameterInfos;
+                }
+            }
+            return parameterInfos;
+        }
+
+        private object GetInstanceForThisInterface(Type type)
+        {
+            IEnumerable<ParameterInfo> parameters = null;
+            foreach (Type t in LoadedType._types)
             {
                 if (t.GetInterfaces().Where(x => x.FullName == type.FullName).Any())
                 {
-                    return Activator.CreateInstance(t);
+                    parameters = GetConstructorParameters(t);
+                    
+                    if (parameters == null || parameters.Count() == 0)
+                    {
+                        return Activator.CreateInstance(t);
+                    }
+
+                    List<object> parametersInstance = new List<object>();
+                    foreach (ParameterInfo parameterInfo in parameters)
+                    {
+                        parametersInstance.Add(GetInstanceForThisInterface(parameterInfo.ParameterType));
+                    }
+                    return Activator.CreateInstance(t, parametersInstance.ToArray());
                 }
             }
             return null;

@@ -1,4 +1,6 @@
-﻿namespace Injector.Example
+﻿using System;
+
+namespace Injector.Example
 {
     public class TypeExample   : ITypeExample
     {
@@ -7,7 +9,7 @@
 
         public TypeExample(ITypeExample2 example2 , ITypeExample3 exmaple3)
         {
-            _propertyExample = 25;
+            Console.WriteLine("I am the constuctor of typeExample1");
             exmaple3.SomeMethod();
             example2.Amethod();
         }
