@@ -10,22 +10,7 @@ namespace Injector.ElementGetter
     {
         public object GetInstance<T>()
         {
-            foreach (Type t in LoadedType._types)
-            {
-              
-                if (t.GetInterfaces().Contains(typeof(T)))
-                {
-                    List<object> parameterInstances = new List<object>();
-                    IEnumerable<ParameterInfo> parameterInfos = GetConstructorParameters(t);
-
-                    foreach (ParameterInfo parameterInfo in parameterInfos)
-                    {
-                        parameterInstances.Add(GetInstanceForThisInterface(parameterInfo.ParameterType));
-                    }
-                    return Activator.CreateInstance(t, parameterInstances.ToArray());
-                }
-            }
-            return null;
+            return GetInstanceForThisInterface(typeof(T));
         }
 
         private static IEnumerable<ParameterInfo> GetConstructorParameters(Type t)
@@ -39,7 +24,7 @@ namespace Injector.ElementGetter
                     {
                         parameterInfos.Add(parameterInfo);
                     }
-                    //take the first constuctor whose all parameters are Interface
+                    //take the first constuctor whose all parameters are Interfaces
                     return parameterInfos;
                 }
             }

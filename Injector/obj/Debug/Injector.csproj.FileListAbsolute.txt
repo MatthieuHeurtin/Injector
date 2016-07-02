@@ -6,3 +6,11 @@ c:\users\matt\documents\visual studio 2015\Projects\Injector\Injector\bin\Debug\
 c:\users\matt\documents\visual studio 2015\Projects\Injector\Injector\bin\Debug\Injector.dll.config
 c:\users\matt\documents\visual studio 2015\Projects\Injector\Injector\bin\Debug\Injector.dll
 c:\users\matt\documents\visual studio 2015\Projects\Injector\Injector\obj\Debug\Injector.dll
+C:\Users\Matt\Documents\Injector\Injector\bin\Debug\Injector.dll.config
+C:\Users\Matt\Documents\Injector\Injector\bin\Debug\Injector.dll
+C:\Users\Matt\Documents\Injector\Injector\bin\Debug\Injector.pdb
+C:\Users\Matt\Documents\Injector\Injector\bin\Debug\Injector.Example.dll
+C:\Users\Matt\Documents\Injector\Injector\bin\Debug\Injector.Example.pdb
+C:\Users\Matt\Documents\Injector\Injector\obj\Debug\Injector.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\Injector\Injector\obj\Debug\Injector.dll
+C:\Users\Matt\Documents\Injector\Injector\obj\Debug\Injector.pdb

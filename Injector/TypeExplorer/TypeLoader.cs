@@ -12,7 +12,7 @@ namespace Injector.TypeExplorer
         public void LoadAssemblies()
         {
             foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory))
-                {
+            {
                 if (IsADll(file) || IsAnExe(file))
                 {
                     Assembly assembly = Assembly.LoadFrom(Path.GetFileName(file));
