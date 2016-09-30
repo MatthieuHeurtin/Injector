@@ -8,9 +8,9 @@ namespace Injector.ElementGetter
 {
     public class InstanceGetter
     {
-        public object GetInstance<T>()
+        public T GetInstance<T>() where T : class 
         {
-            return GetInstanceForThisInterface(typeof(T));
+            return GetInstanceForThisInterface(typeof(T)) as T;
         }
 
         private static IEnumerable<ParameterInfo> GetConstructorParameters(Type t)

@@ -10,8 +10,8 @@ namespace Injector.Example.User
             ITypeLoader typeLoader = new TypeLoader();
             typeLoader.LoadAssemblies();
 
-            ITypeExample myType = new InstanceGetter().GetInstance<ITypeExample>() as ITypeExample;
-            myType.MethodExample();
+            ITypeExample myType = new InstanceGetter().GetInstance<ITypeExample>();
+                myType.MethodExample();
 
         }
     }
